@@ -1,0 +1,6 @@
+framework module Pods_ReasonML {
+  umbrella header "Pods-ReasonML-umbrella.h"
+
+  export *
+  module * { export * }
+}
