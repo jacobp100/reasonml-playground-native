@@ -26,7 +26,7 @@ struct Toast: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 10) {
             Text(message)
             .lineLimit(nil)
             
