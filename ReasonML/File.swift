@@ -11,55 +11,56 @@ import JavaScriptCore
 import Combine
 
 struct ConsoleEntry: Equatable, Hashable, Identifiable {
-    enum Level { case log, warn, error }
+    enum Level: Int { case log = 0, warn = 1, error = 2 }
     
     let id = UUID()
     let level: Level
     let message: String
 }
 
-@objc protocol ConsoleJSExports: JSExport {
-    @objc func log(_ a: Any, _ b: Any, _ c: Any, _ d: Any, _ e: Any, _ f: Any)
-    @objc func warn(_ a: Any, _ b: Any, _ c: Any, _ d: Any, _ e: Any, _ f: Any)
-    @objc func error(_ a: Any, _ b: Any, _ c: Any, _ d: Any, _ e: Any, _ f: Any)
-}
-
- @objc class Console: NSObject, ConsoleJSExports {
-    var entries = Array<ConsoleEntry>()
+struct CompilationError: Equatable {
+    static func == (lhs: CompilationError, rhs: CompilationError) -> Bool {
+        lhs.message == rhs.message
+    }
     
-    fileprivate func append(_ level: ConsoleEntry.Level, _ a: Any, _ b: Any, _ c: Any, _ d: Any, _ e: Any, _ f: Any) {
-        let message = [a, b, c, d, e, f]
-            .compactMap { arg -> String? in
-                if let arg = arg as? CustomStringConvertible {
-                    return "\(arg)"
-                } else {
-                    return nil
-                }
-            }
-            .joined(separator: " ")
-            .trimmingCharacters(in: .whitespacesAndNewlines)
+    fileprivate static let compilationErrorLocationRegex = try? NSRegularExpression(
+        pattern: "Preview (\\d+):(\\d+)",
+        options: []
+    )
+    
+    let message: String
+    let location: (Int, Int)?
+    
+    init(_ message: String) {
+        self.message = message
         
-        if !message.isEmpty {
-            entries.append(ConsoleEntry(level: level, message: message))
+        if let matches = CompilationError.compilationErrorLocationRegex?.matches(
+                in: message,
+                options: [],
+                range: NSRange(location: 0, length: message.utf16.count)
+            ),
+            let match = matches.first,
+            let lineRange = Range(match.range(at: 1), in: message),
+            let columnRange = Range(match.range(at: 2), in: message),
+            let lineNumber = Int(message[lineRange]),
+            let columnNumber = Int(message[columnRange]) {
+            self.location = (lineNumber, columnNumber)
+        } else {
+            self.location = nil
         }
-    }
-    
-    @objc func log(_ a: Any, _ b: Any, _ c: Any, _ d: Any, _ e: Any, _ f: Any) {
-        append(.log, a, b, c, d, e, f)
-    }
-    
-    @objc func warn(_ a: Any, _ b: Any, _ c: Any, _ d: Any, _ e: Any, _ f: Any) {
-        append(.warn, a, b, c, d, e, f)
-    }
-    
-    @objc func error(_ a: Any, _ b: Any, _ c: Any, _ d: Any, _ e: Any, _ f: Any) {
-        append(.error, a, b, c, d, e, f)
     }
 }
 
 class File: ObservableObject {
     enum Language: Equatable, Hashable {
         case reason, ocaml
+        
+        var jsRepresentation: String {
+            switch (self) {
+            case .reason: return "re"
+            case .ocaml: return "ml"
+            }
+        }
     }
     
     fileprivate var subscriptions = Set<AnyCancellable>()
@@ -69,86 +70,66 @@ class File: ObservableObject {
     @Published var source = "let x = 5;\nJs.log(x);\n"
     @Published var javascript = ""
     @Published var console = Array<ConsoleEntry>()
-    @Published var compilationError: String? = nil
+    @Published var compilationError: CompilationError? = nil
     
     init() {
-        ["refmt", "bsReasonReact", "main"].forEach { resource in
-            if let url = Bundle.main.url(forResource: resource, withExtension: "js"),
-                let source = try? String(contentsOf: url) {
-                jsContext?.evaluateScript(source)
-            }
+        if let url = Bundle.main.url(forResource: "main", withExtension: "js"),
+            let source = try? String(contentsOf: url) {
+            jsContext?.evaluateScript(source)
         }
         
-        if let jsContext = jsContext {
-            jsContext.globalObject?.setValue(JSValue(nullIn: jsContext), forProperty: "console")
-        }
-        
-        $source
+        Publishers.CombineLatest($source, $language)
             .debounce(for: 1, scheduler: RunLoop.main)
-            .sink { source in
+            .sink { (source, language) in
                 guard let jsContext = self.jsContext,
-                    let window = jsContext.globalObject else {
+                    let window = jsContext.globalObject,
+                    let runtime = window.objectForKeyedSubscript("runtime"),
+                    let out = runtime.invokeMethod(
+                        "compile",
+                        withArguments: [language.jsRepresentation, source]
+                    ),
+                    let errors = out.objectAtIndexedSubscript(0),
+                    let javascript = out.objectAtIndexedSubscript(1) else {
+                    self.javascript = ""
+                    self.compilationError = nil
                     return
                 }
                 
-                let console = Console()
-                window.setValue(console, forProperty: "console")
-                
-                let code = window
-                    .objectForKeyedSubscript(self.language == .reason ? "reason" : "ocaml")?
-                    .invokeMethod("compile_super_errors_ppx_v2", withArguments: [source])?
-                    .objectForKeyedSubscript("js_code")
-                
-                window.setValue(JSValue(nullIn: jsContext), forProperty: "console")
-                
-                if let code = code, code.isString {
+                if errors.isNull && javascript.isString {
+                    self.javascript = javascript.toString()
                     self.compilationError = nil
-                    self.javascript = code.toString()
-                } else {
-                    let regex = try! NSRegularExpression(
-                        pattern: "\\e\\[[^m]*m",
-                        options: .init()
-                    )
-                    
-                    self.compilationError = console.entries
-                        .map(\.message)
-                        .filter { !$0.contains("WARN: File \"js_cmj_load.ml\"") }
-                        .map { $0.replacingOccurrences(of: "(No file name)", with: "") }
-                        .map {
-                            regex.stringByReplacingMatches(
-                                in: $0,
-                                options: [],
-                                range: NSMakeRange(0, $0.count),
-                                withTemplate: ""
-                            )
-                        }
-                        .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-                        .joined(separator: "\n")
+                } else if errors.isString {
                     self.javascript = ""
+                    self.compilationError = CompilationError(errors.toString())
                 }
             }
             .store(in: &subscriptions)
         
         $javascript
-            .sink { source in
-                guard !source.isEmpty else {
+            .sink { javascript in
+                guard !javascript.isEmpty,
+                    let jsContext = self.jsContext,
+                    let window = jsContext.globalObject,
+                    let runtime = window.objectForKeyedSubscript("runtime"),
+                    let out = runtime.invokeMethod(
+                        "evalScript",
+                        withArguments: [javascript]
+                    ),
+                    let console = out.toArray() else {
                     self.console = []
                     return
                 }
                 
-                guard let jsContext = self.jsContext,
-                    let window = jsContext.globalObject else {
-                    return
+                self.console = console.compactMap { entry -> ConsoleEntry? in
+                    if let entry = entry as? NSDictionary,
+                        let levelInt = entry["level"] as? Int,
+                        let level = ConsoleEntry.Level(rawValue: levelInt),
+                        let message = entry["message"] as? String {
+                        return ConsoleEntry(level: level, message: message)
+                    } else {
+                        return nil
+                    }
                 }
-                
-                let console = Console()
-                window.setValue(console, forProperty: "console")
-                
-                window.invokeMethod("evalScript", withArguments: [source])
-                
-                window.setValue(JSValue(nullIn: jsContext), forProperty: "console")
-                
-                self.console = console.entries
             }
             .store(in: &subscriptions)
     }
@@ -165,16 +146,23 @@ class File: ObservableObject {
     }
     
     func source(translatedTo language: Language) -> String? {
-        guard let window = jsContext?.globalObject else {
+        guard let jsContext = self.jsContext,
+            let window = jsContext.globalObject,
+            let runtime = window.objectForKeyedSubscript("runtime"),
+            let out = runtime.invokeMethod(
+                "translate",
+                withArguments: [
+                    self.language.jsRepresentation,
+                    language.jsRepresentation,
+                    source
+                ]
+            ),
+            let errors = out.objectAtIndexedSubscript(0),
+            let source = out.objectAtIndexedSubscript(1) else {
             return nil
         }
         
-        let parseSource = self.language == .reason ? "parseRE" : "parseML"
-        let printAst = language == .reason ? "printRE" : "printML"
-
-        if let ast = window.invokeMethod(parseSource, withArguments: [source]),
-            let source = window.invokeMethod(printAst, withArguments: [ast]),
-            source.isString {
+        if errors.isNull && source.isString {
             return source.toString()
         } else {
             return nil

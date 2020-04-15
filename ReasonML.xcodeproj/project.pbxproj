@@ -3,14 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		160F8282244392E9003CD7D4 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F8281244392E9003CD7D4 /* File.swift */; };
-		160F82862443A4C6003CD7D4 /* refmt.js in Resources */ = {isa = PBXBuildFile; fileRef = 160F82852443A4C6003CD7D4 /* refmt.js */; };
-		160F82882443A8B7003CD7D4 /* bsReasonReact.js in Resources */ = {isa = PBXBuildFile; fileRef = 160F82872443A8B7003CD7D4 /* bsReasonReact.js */; };
-		160F828A244496D5003CD7D4 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 160F8289244496D5003CD7D4 /* main.js */; };
 		160F828C2444999C003CD7D4 /* ConsoleEntries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F828B2444999C003CD7D4 /* ConsoleEntries.swift */; };
 		160F829024449CE4003CD7D4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F828F24449CE4003CD7D4 /* Toast.swift */; };
 		16B379FC24437B0100F99D69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B379FB24437B0100F99D69 /* AppDelegate.swift */; };
@@ -20,14 +17,16 @@
 		16B37A0524437B0300F99D69 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B37A0424437B0300F99D69 /* Preview Assets.xcassets */; };
 		16B37A0824437B0300F99D69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16B37A0624437B0300F99D69 /* LaunchScreen.storyboard */; };
 		16B37A1024437F1300F99D69 /* TextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B37A0F24437F1300F99D69 /* TextEditor.swift */; };
+		16C99F9124478A1500C8B130 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99F9024478A1500C8B130 /* Types.swift */; };
+		16C99F9324478A4000C8B130 /* ModePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99F9224478A4000C8B130 /* ModePicker.swift */; };
+		16C99F952447A16C00C8B130 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99F942447A16C00C8B130 /* Header.swift */; };
+		16C99F972447A2B200C8B130 /* MainContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99F962447A2B200C8B130 /* MainContent.swift */; };
+		16F63C2C24477384002B62C2 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 16F63C2B24477384002B62C2 /* main.js */; };
 		B8FA0CBA9B5AC23CE3192E8C /* Pods_ReasonML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062BE5523D1D8A1299C2AB2 /* Pods_ReasonML.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		160F8281244392E9003CD7D4 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		160F82852443A4C6003CD7D4 /* refmt.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = refmt.js; sourceTree = "<group>"; };
-		160F82872443A8B7003CD7D4 /* bsReasonReact.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bsReasonReact.js; sourceTree = "<group>"; };
-		160F8289244496D5003CD7D4 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = main.js; path = runtime/dist/main.js; sourceTree = SOURCE_ROOT; };
 		160F828B2444999C003CD7D4 /* ConsoleEntries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleEntries.swift; sourceTree = "<group>"; };
 		160F828F24449CE4003CD7D4 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		16B379F824437B0100F99D69 /* ReasonML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReasonML.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +38,11 @@
 		16B37A0724437B0300F99D69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		16B37A0924437B0300F99D69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16B37A0F24437F1300F99D69 /* TextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditor.swift; sourceTree = "<group>"; };
+		16C99F9024478A1500C8B130 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		16C99F9224478A4000C8B130 /* ModePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModePicker.swift; sourceTree = "<group>"; };
+		16C99F942447A16C00C8B130 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		16C99F962447A2B200C8B130 /* MainContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContent.swift; sourceTree = "<group>"; };
+		16F63C2B24477384002B62C2 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = main.js; path = runtime/dist/main.js; sourceTree = SOURCE_ROOT; };
 		19FBF3652E1283FD88413046 /* Pods-ReasonML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReasonML.debug.xcconfig"; path = "Target Support Files/Pods-ReasonML/Pods-ReasonML.debug.xcconfig"; sourceTree = "<group>"; };
 		7062BE5523D1D8A1299C2AB2 /* Pods_ReasonML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReasonML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FFE5A39A4B11087A5048ACB /* Pods-ReasonML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReasonML.release.xcconfig"; path = "Target Support Files/Pods-ReasonML/Pods-ReasonML.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,17 +93,19 @@
 				16B379FB24437B0100F99D69 /* AppDelegate.swift */,
 				16B379FD24437B0100F99D69 /* SceneDelegate.swift */,
 				16B379FF24437B0100F99D69 /* ContentView.swift */,
+				16C99F942447A16C00C8B130 /* Header.swift */,
+				16C99F9224478A4000C8B130 /* ModePicker.swift */,
+				16C99F962447A2B200C8B130 /* MainContent.swift */,
 				160F828B2444999C003CD7D4 /* ConsoleEntries.swift */,
 				160F828F24449CE4003CD7D4 /* Toast.swift */,
+				16C99F9024478A1500C8B130 /* Types.swift */,
 				16B37A0F24437F1300F99D69 /* TextEditor.swift */,
 				160F8281244392E9003CD7D4 /* File.swift */,
 				16B37A0124437B0300F99D69 /* Assets.xcassets */,
 				16B37A0624437B0300F99D69 /* LaunchScreen.storyboard */,
 				16B37A0924437B0300F99D69 /* Info.plist */,
+				16F63C2B24477384002B62C2 /* main.js */,
 				16B37A0324437B0300F99D69 /* Preview Content */,
-				160F82852443A4C6003CD7D4 /* refmt.js */,
-				160F82872443A8B7003CD7D4 /* bsReasonReact.js */,
-				160F8289244496D5003CD7D4 /* main.js */,
 			);
 			path = ReasonML;
 			sourceTree = "<group>";
@@ -131,6 +137,7 @@
 				16B379F424437B0000F99D69 /* Sources */,
 				16B379F524437B0000F99D69 /* Frameworks */,
 				16B379F624437B0000F99D69 /* Resources */,
+				151AB1B4DAAF2ECDAB40C4FD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -179,18 +186,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				160F82882443A8B7003CD7D4 /* bsReasonReact.js in Resources */,
 				16B37A0824437B0300F99D69 /* LaunchScreen.storyboard in Resources */,
-				160F82862443A4C6003CD7D4 /* refmt.js in Resources */,
-				160F828A244496D5003CD7D4 /* main.js in Resources */,
 				16B37A0524437B0300F99D69 /* Preview Assets.xcassets in Resources */,
 				16B37A0224437B0300F99D69 /* Assets.xcassets in Resources */,
+				16F63C2C24477384002B62C2 /* main.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		151AB1B4DAAF2ECDAB40C4FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReasonML/Pods-ReasonML-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReasonML/Pods-ReasonML-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReasonML/Pods-ReasonML-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		923D96AE0F28CDFF5AD5516C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -220,13 +242,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16C99F952447A16C00C8B130 /* Header.swift in Sources */,
 				160F828C2444999C003CD7D4 /* ConsoleEntries.swift in Sources */,
 				160F8282244392E9003CD7D4 /* File.swift in Sources */,
 				16B379FC24437B0100F99D69 /* AppDelegate.swift in Sources */,
+				16C99F9124478A1500C8B130 /* Types.swift in Sources */,
 				16B379FE24437B0100F99D69 /* SceneDelegate.swift in Sources */,
 				16B37A0024437B0100F99D69 /* ContentView.swift in Sources */,
 				16B37A1024437F1300F99D69 /* TextEditor.swift in Sources */,
 				160F829024449CE4003CD7D4 /* Toast.swift in Sources */,
+				16C99F972447A2B200C8B130 /* MainContent.swift in Sources */,
+				16C99F9324478A4000C8B130 /* ModePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +366,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -364,7 +391,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"ReasonML/Preview Content\"";
 				DEVELOPMENT_TEAM = YG77U88R8M;
 				ENABLE_PREVIEWS = YES;
@@ -373,6 +400,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.jacob.ReasonML;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -386,7 +414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"ReasonML/Preview Content\"";
 				DEVELOPMENT_TEAM = YG77U88R8M;
 				ENABLE_PREVIEWS = YES;
@@ -395,6 +423,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.jacob.ReasonML;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

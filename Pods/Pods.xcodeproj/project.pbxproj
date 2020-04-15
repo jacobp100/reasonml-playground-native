@@ -3,71 +3,109 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		196D6F8D4B2681FF42B3DE6947BA97B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		3C1D70046085857EBCFE17DD5E3A099A /* Pods-ReasonML-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E67B575268ADF068425B12A85867DAC /* Pods-ReasonML-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9D6B3DC026734A9EB4C08704C38B3C7 /* Pods-ReasonML-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C57BCE99B12E799C61AA6D34EC53988E /* Pods-ReasonML-dummy.m */; };
+		04516B10D23612F1EF169D07F5E5D412 /* AppKitIntrospectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B49C99C2F4E842FDEBBF3C286D38C5 /* AppKitIntrospectionView.swift */; };
+		20C51CA2EB44BDAD4BDFFE28DE09417D /* Pods-ReasonML-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6557A9F554670DA94686505110F7E210 /* Pods-ReasonML-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		26A76676C1314B46DF5F1F1313ABE2F4 /* Introspect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A25F86C9987573D7B5A7C5B4C5A932A /* Introspect.swift */; };
+		8F3CBE9275DA5B3BEC601DA91F93CFD2 /* Pods-ReasonML-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6BD8C3702D24BC3CE29D193382CB58 /* Pods-ReasonML-dummy.m */; };
+		A8B0DC12BE200007F9EB2D65531A84CA /* UIKitIntrospectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D605CFA53A8A241D2858E82714CEEF13 /* UIKitIntrospectionView.swift */; };
+		CB45615EE0F3062C956D36293755EFA2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		CB485DF96B843B0720B142CE227F4274 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		CBBB3C3152D4C6E2F661C3E5E813147C /* Introspect-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EB4267006697994435C62D25E8D8EB4C /* Introspect-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D8DE7403B046571663D236C6905B4E52 /* UIKitIntrospectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51300A4CF1723BB967664301F742DE0 /* UIKitIntrospectionViewController.swift */; };
+		DE9FE1FE2E7B9C17B1FB97C6E613DFF2 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1486B828B8C8BA3C41E7721898B6D25 /* ViewExtensions.swift */; };
+		FEE53BB666EC19D440243E6ED59F33CC /* Introspect-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB8FEE9102F7F69B45C190962261500 /* Introspect-dummy.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8BDFA18D5C6B16F1D0664FBEC929B830 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97E3685499568DCCBA6C15905F707BDC;
+			remoteInfo = Introspect;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		212DC609D4CDF3CA4FD3625BB7C08407 /* Pods-ReasonML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ReasonML.release.xcconfig"; sourceTree = "<group>"; };
+		044B9263063167F0D9EF43E6FF68900A /* Pods-ReasonML-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ReasonML-frameworks.sh"; sourceTree = "<group>"; };
+		13B49C99C2F4E842FDEBBF3C286D38C5 /* AppKitIntrospectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppKitIntrospectionView.swift; path = Introspect/AppKitIntrospectionView.swift; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6E67B575268ADF068425B12A85867DAC /* Pods-ReasonML-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ReasonML-umbrella.h"; sourceTree = "<group>"; };
-		703CB91E4B2B46B926B1C3E6C308EA1E /* Pods-ReasonML-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ReasonML-acknowledgements.plist"; sourceTree = "<group>"; };
-		85070F8034E993F8B7CA0036238A7F1C /* Pods-ReasonML-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ReasonML-acknowledgements.markdown"; sourceTree = "<group>"; };
-		8C4E756606BD98C20022340098125A92 /* Pods-ReasonML.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ReasonML.modulemap"; sourceTree = "<group>"; };
-		938177667DD53C8A3AF5B04C1FA91428 /* Pods-ReasonML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ReasonML.debug.xcconfig"; sourceTree = "<group>"; };
+		3F476AE251F4058B6D29FC8DB077802A /* Pods-ReasonML-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ReasonML-acknowledgements.plist"; sourceTree = "<group>"; };
+		48DAEB5CD9626E161843963F579E5E81 /* Introspect-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Introspect-Info.plist"; sourceTree = "<group>"; };
+		5BB8FEE9102F7F69B45C190962261500 /* Introspect-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Introspect-dummy.m"; sourceTree = "<group>"; };
+		6557A9F554670DA94686505110F7E210 /* Pods-ReasonML-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ReasonML-umbrella.h"; sourceTree = "<group>"; };
+		6B6BD8C3702D24BC3CE29D193382CB58 /* Pods-ReasonML-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ReasonML-dummy.m"; sourceTree = "<group>"; };
+		90D4818D13FEF1F5177D052E0F54F5F7 /* Pods-ReasonML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ReasonML.release.xcconfig"; sourceTree = "<group>"; };
+		90DD683993FC89B23D907B3F0C0B86AC /* Introspect.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Introspect.xcconfig; sourceTree = "<group>"; };
+		942EFAFEDB2347E62892D0C707573811 /* Introspect.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Introspect.modulemap; sourceTree = "<group>"; };
+		96B54EB7A8F729FABDA11B3456A287D2 /* Pods-ReasonML-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ReasonML-acknowledgements.markdown"; sourceTree = "<group>"; };
+		97541E1ECAE30AFFBDE73A655CCF5E78 /* Pods-ReasonML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ReasonML.debug.xcconfig"; sourceTree = "<group>"; };
+		9A25F86C9987573D7B5A7C5B4C5A932A /* Introspect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Introspect.swift; path = Introspect/Introspect.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C57BCE99B12E799C61AA6D34EC53988E /* Pods-ReasonML-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ReasonML-dummy.m"; sourceTree = "<group>"; };
-		DC658070D0F97F7B0577CCDD77976768 /* Pods-ReasonML-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ReasonML-Info.plist"; sourceTree = "<group>"; };
+		B1320E82737EFA14061F9477D4F3CF36 /* Pods-ReasonML-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ReasonML-Info.plist"; sourceTree = "<group>"; };
+		B51300A4CF1723BB967664301F742DE0 /* UIKitIntrospectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIKitIntrospectionViewController.swift; path = Introspect/UIKitIntrospectionViewController.swift; sourceTree = "<group>"; };
+		BD8FE33AC13D62C18E718ED3ACEAF630 /* Pods-ReasonML.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ReasonML.modulemap"; sourceTree = "<group>"; };
+		D0A70003FD5E49B30CA83DAAFE03116B /* Introspect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Introspect.framework; path = Introspect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1486B828B8C8BA3C41E7721898B6D25 /* ViewExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewExtensions.swift; path = Introspect/ViewExtensions.swift; sourceTree = "<group>"; };
+		D605CFA53A8A241D2858E82714CEEF13 /* UIKitIntrospectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIKitIntrospectionView.swift; path = Introspect/UIKitIntrospectionView.swift; sourceTree = "<group>"; };
+		DED37B4597E8EF6A5AD043473C7FAEFA /* Introspect-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Introspect-prefix.pch"; sourceTree = "<group>"; };
 		E41D4F6BBF41C6C18F46EB3A0B96086E /* Pods_ReasonML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ReasonML.framework; path = "Pods-ReasonML.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB4267006697994435C62D25E8D8EB4C /* Introspect-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Introspect-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B19AD7BF1CF95D6538B813C529810F1F /* Frameworks */ = {
+		1D07A8401C11B6A9C86E442398D94C1B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				196D6F8D4B2681FF42B3DE6947BA97B3 /* Foundation.framework in Frameworks */,
+				CB45615EE0F3062C956D36293755EFA2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31FA779C2E2C1439F386AC99AEC8D9FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB485DF96B843B0720B142CE227F4274 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		33FF985DCBB496E4FDBE52AC35C47EB9 /* Pods-ReasonML */ = {
+		08773185FB31076668F10CC25FA26E01 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8C4E756606BD98C20022340098125A92 /* Pods-ReasonML.modulemap */,
-				85070F8034E993F8B7CA0036238A7F1C /* Pods-ReasonML-acknowledgements.markdown */,
-				703CB91E4B2B46B926B1C3E6C308EA1E /* Pods-ReasonML-acknowledgements.plist */,
-				C57BCE99B12E799C61AA6D34EC53988E /* Pods-ReasonML-dummy.m */,
-				DC658070D0F97F7B0577CCDD77976768 /* Pods-ReasonML-Info.plist */,
-				6E67B575268ADF068425B12A85867DAC /* Pods-ReasonML-umbrella.h */,
-				938177667DD53C8A3AF5B04C1FA91428 /* Pods-ReasonML.debug.xcconfig */,
-				212DC609D4CDF3CA4FD3625BB7C08407 /* Pods-ReasonML.release.xcconfig */,
-			);
-			name = "Pods-ReasonML";
-			path = "Target Support Files/Pods-ReasonML";
-			sourceTree = "<group>";
-		};
-		BE514E7103C196A57A0927EE86FF9D65 /* Products */ = {
-			isa = PBXGroup;
-			children = (
+				D0A70003FD5E49B30CA83DAAFE03116B /* Introspect.framework */,
 				E41D4F6BBF41C6C18F46EB3A0B96086E /* Pods_ReasonML.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BF66D6D8B3FDC7D1BBB1262EB2993763 /* Targets Support Files */ = {
+		1B299641CA1E5F2BB23CE6B2BCDEC263 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				33FF985DCBB496E4FDBE52AC35C47EB9 /* Pods-ReasonML */,
+				942EFAFEDB2347E62892D0C707573811 /* Introspect.modulemap */,
+				90DD683993FC89B23D907B3F0C0B86AC /* Introspect.xcconfig */,
+				5BB8FEE9102F7F69B45C190962261500 /* Introspect-dummy.m */,
+				48DAEB5CD9626E161843963F579E5E81 /* Introspect-Info.plist */,
+				DED37B4597E8EF6A5AD043473C7FAEFA /* Introspect-prefix.pch */,
+				EB4267006697994435C62D25E8D8EB4C /* Introspect-umbrella.h */,
 			);
-			name = "Targets Support Files";
+			name = "Support Files";
+			path = "../Target Support Files/Introspect";
+			sourceTree = "<group>";
+		};
+		20C24BE28A8BC1948F8DA34D666339A7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F7C45FD70C611531A4AFB4DD536D8F1F /* Introspect */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
@@ -83,8 +121,9 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				BE514E7103C196A57A0927EE86FF9D65 /* Products */,
-				BF66D6D8B3FDC7D1BBB1262EB2993763 /* Targets Support Files */,
+				20C24BE28A8BC1948F8DA34D666339A7 /* Pods */,
+				08773185FB31076668F10CC25FA26E01 /* Products */,
+				D47AF703B5CBC8B92BC1F02A9426B1C3 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,14 +135,61 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D47AF703B5CBC8B92BC1F02A9426B1C3 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4C2801BE85D8F532BE325340CF19296 /* Pods-ReasonML */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		D4C2801BE85D8F532BE325340CF19296 /* Pods-ReasonML */ = {
+			isa = PBXGroup;
+			children = (
+				BD8FE33AC13D62C18E718ED3ACEAF630 /* Pods-ReasonML.modulemap */,
+				96B54EB7A8F729FABDA11B3456A287D2 /* Pods-ReasonML-acknowledgements.markdown */,
+				3F476AE251F4058B6D29FC8DB077802A /* Pods-ReasonML-acknowledgements.plist */,
+				6B6BD8C3702D24BC3CE29D193382CB58 /* Pods-ReasonML-dummy.m */,
+				044B9263063167F0D9EF43E6FF68900A /* Pods-ReasonML-frameworks.sh */,
+				B1320E82737EFA14061F9477D4F3CF36 /* Pods-ReasonML-Info.plist */,
+				6557A9F554670DA94686505110F7E210 /* Pods-ReasonML-umbrella.h */,
+				97541E1ECAE30AFFBDE73A655CCF5E78 /* Pods-ReasonML.debug.xcconfig */,
+				90D4818D13FEF1F5177D052E0F54F5F7 /* Pods-ReasonML.release.xcconfig */,
+			);
+			name = "Pods-ReasonML";
+			path = "Target Support Files/Pods-ReasonML";
+			sourceTree = "<group>";
+		};
+		F7C45FD70C611531A4AFB4DD536D8F1F /* Introspect */ = {
+			isa = PBXGroup;
+			children = (
+				13B49C99C2F4E842FDEBBF3C286D38C5 /* AppKitIntrospectionView.swift */,
+				9A25F86C9987573D7B5A7C5B4C5A932A /* Introspect.swift */,
+				D605CFA53A8A241D2858E82714CEEF13 /* UIKitIntrospectionView.swift */,
+				B51300A4CF1723BB967664301F742DE0 /* UIKitIntrospectionViewController.swift */,
+				D1486B828B8C8BA3C41E7721898B6D25 /* ViewExtensions.swift */,
+				1B299641CA1E5F2BB23CE6B2BCDEC263 /* Support Files */,
+			);
+			name = Introspect;
+			path = Introspect;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		E3ED1AF0EFD965F407FACCCD7D7B987B /* Headers */ = {
+		BA6D24F2273F25115F2EDF509D2CB391 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C1D70046085857EBCFE17DD5E3A099A /* Pods-ReasonML-umbrella.h in Headers */,
+				20C51CA2EB44BDAD4BDFFE28DE09417D /* Pods-ReasonML-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4A87CCF965CA6A18F5C4D219FBD897B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBBB3C3152D4C6E2F661C3E5E813147C /* Introspect-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,20 +198,39 @@
 /* Begin PBXNativeTarget section */
 		617863D2C401D28334690D10E5C1A0A0 /* Pods-ReasonML */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A384BCBA806B1AB6D34F64F89CC49E2 /* Build configuration list for PBXNativeTarget "Pods-ReasonML" */;
+			buildConfigurationList = C1E9404F89337D8C9D4642D68C1270F1 /* Build configuration list for PBXNativeTarget "Pods-ReasonML" */;
 			buildPhases = (
-				E3ED1AF0EFD965F407FACCCD7D7B987B /* Headers */,
-				CDA324724CE2B861659F4DFC056D38D3 /* Sources */,
-				B19AD7BF1CF95D6538B813C529810F1F /* Frameworks */,
-				8D1C8EB88A20FE5934DAD512EAB444E2 /* Resources */,
+				BA6D24F2273F25115F2EDF509D2CB391 /* Headers */,
+				6C4FB5BEFC188F1A8D3CC3279D7229BB /* Sources */,
+				1D07A8401C11B6A9C86E442398D94C1B /* Frameworks */,
+				24A1077FBE7A990839C0BB1BEF775FFC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0CFEF2297D2205A29A67179CA7BBA707 /* PBXTargetDependency */,
+			);
+			name = "Pods-ReasonML";
+			productName = "Pods-ReasonML";
+			productReference = E41D4F6BBF41C6C18F46EB3A0B96086E /* Pods_ReasonML.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		97E3685499568DCCBA6C15905F707BDC /* Introspect */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16B9305882DF4E5359A9C88CFB34D3D7 /* Build configuration list for PBXNativeTarget "Introspect" */;
+			buildPhases = (
+				C4A87CCF965CA6A18F5C4D219FBD897B /* Headers */,
+				EDC774157FF0F74DA662C65D8D058FEF /* Sources */,
+				31FA779C2E2C1439F386AC99AEC8D9FC /* Frameworks */,
+				0CF6844CDBF49121C460836A8676E396 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-ReasonML";
-			productName = "Pods-ReasonML";
-			productReference = E41D4F6BBF41C6C18F46EB3A0B96086E /* Pods_ReasonML.framework */;
+			name = Introspect;
+			productName = Introspect;
+			productReference = D0A70003FD5E49B30CA83DAAFE03116B /* Introspect.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -138,24 +243,32 @@
 				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 10.0";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = BE514E7103C196A57A0927EE86FF9D65 /* Products */;
+			productRefGroup = 08773185FB31076668F10CC25FA26E01 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				97E3685499568DCCBA6C15905F707BDC /* Introspect */,
 				617863D2C401D28334690D10E5C1A0A0 /* Pods-ReasonML */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8D1C8EB88A20FE5934DAD512EAB444E2 /* Resources */ = {
+		0CF6844CDBF49121C460836A8676E396 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24A1077FBE7A990839C0BB1BEF775FFC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -165,22 +278,43 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CDA324724CE2B861659F4DFC056D38D3 /* Sources */ = {
+		6C4FB5BEFC188F1A8D3CC3279D7229BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9D6B3DC026734A9EB4C08704C38B3C7 /* Pods-ReasonML-dummy.m in Sources */,
+				8F3CBE9275DA5B3BEC601DA91F93CFD2 /* Pods-ReasonML-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDC774157FF0F74DA662C65D8D058FEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04516B10D23612F1EF169D07F5E5D412 /* AppKitIntrospectionView.swift in Sources */,
+				FEE53BB666EC19D440243E6ED59F33CC /* Introspect-dummy.m in Sources */,
+				26A76676C1314B46DF5F1F1313ABE2F4 /* Introspect.swift in Sources */,
+				A8B0DC12BE200007F9EB2D65531A84CA /* UIKitIntrospectionView.swift in Sources */,
+				D8DE7403B046571663D236C6905B4E52 /* UIKitIntrospectionViewController.swift in Sources */,
+				DE9FE1FE2E7B9C17B1FB97C6E613DFF2 /* ViewExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0CFEF2297D2205A29A67179CA7BBA707 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Introspect;
+			target = 97E3685499568DCCBA6C15905F707BDC /* Introspect */;
+			targetProxy = 8BDFA18D5C6B16F1D0664FBEC929B830 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		2F5195E6AF7C016779D7EE75BFE30797 /* Release */ = {
+		3569074A127D5045EFE256AFF2E4A956 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 212DC609D4CDF3CA4FD3625BB7C08407 /* Pods-ReasonML.release.xcconfig */;
+			baseConfigurationReference = 90DD683993FC89B23D907B3F0C0B86AC /* Introspect.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -191,29 +325,27 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-ReasonML/Pods-ReasonML-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Introspect/Introspect-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Introspect/Introspect-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ReasonML/Pods-ReasonML.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/Introspect/Introspect.modulemap";
+				PRODUCT_MODULE_NAME = Introspect;
+				PRODUCT_NAME = Introspect;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		6C61D818ACD3C2C116FED6A9C67E91B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -339,9 +471,48 @@
 			};
 			name = Release;
 		};
-		CBC5930D4FF0FDB69ED493DA8367CBBC /* Debug */ = {
+		CA4582A410324E314384E5554CDEFB56 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 938177667DD53C8A3AF5B04C1FA91428 /* Pods-ReasonML.debug.xcconfig */;
+			baseConfigurationReference = 90D4818D13FEF1F5177D052E0F54F5F7 /* Pods-ReasonML.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ReasonML/Pods-ReasonML-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ReasonML/Pods-ReasonML.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CEBA3976B0CF1E1ADC30CE7CC93D0B1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97541E1ECAE30AFFBDE73A655CCF5E78 /* Pods-ReasonML.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -377,14 +548,51 @@
 			};
 			name = Debug;
 		};
+		E340505C69AE717E8A512C0C4CF80E3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90DD683993FC89B23D907B3F0C0B86AC /* Introspect.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Introspect/Introspect-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Introspect/Introspect-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Introspect/Introspect.modulemap";
+				PRODUCT_MODULE_NAME = Introspect;
+				PRODUCT_NAME = Introspect;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1A384BCBA806B1AB6D34F64F89CC49E2 /* Build configuration list for PBXNativeTarget "Pods-ReasonML" */ = {
+		16B9305882DF4E5359A9C88CFB34D3D7 /* Build configuration list for PBXNativeTarget "Introspect" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CBC5930D4FF0FDB69ED493DA8367CBBC /* Debug */,
-				2F5195E6AF7C016779D7EE75BFE30797 /* Release */,
+				3569074A127D5045EFE256AFF2E4A956 /* Debug */,
+				E340505C69AE717E8A512C0C4CF80E3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -394,6 +602,15 @@
 			buildConfigurations = (
 				6C61D818ACD3C2C116FED6A9C67E91B4 /* Debug */,
 				7DC5F11AFBEAE473E8D3C24A2D11338D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1E9404F89337D8C9D4642D68C1270F1 /* Build configuration list for PBXNativeTarget "Pods-ReasonML" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEBA3976B0CF1E1ADC30CE7CC93D0B1F /* Debug */,
+				CA4582A410324E314384E5554CDEFB56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

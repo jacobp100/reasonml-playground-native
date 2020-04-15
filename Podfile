@@ -6,5 +6,6 @@ target 'ReasonML' do
   use_frameworks!
 
   # Pods for ReasonML
+  pod "Introspect"
 
 end

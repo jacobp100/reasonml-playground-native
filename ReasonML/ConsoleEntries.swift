@@ -9,25 +9,33 @@
 import SwiftUI
 
 struct ConsoleEntries: View {
-    let entries: [ConsoleEntry]
+    @ObservedObject var file: File
     
     var body: some View {
-        List(entries) { (consoleEntry: ConsoleEntry) in
+        List(file.console) { consoleEntry in
             HStack {
                 Image(systemName: consoleEntry.systemName)
                 .foregroundColor(Color(consoleEntry.tintColor))
                 
                 Text(consoleEntry.message)
             }
+            .contextMenu {
+                Button("Copy") {
+                    UIPasteboard.general.string = consoleEntry.message
+                }
+            }
+        }
+        .introspectTableView { tableView in
+            tableView.separatorColor = .clear
         }
     }
 }
 
-struct ConsoleEntries_Previews: PreviewProvider {
-    static var previews: some View {
-        ConsoleEntries(entries: [])
-    }
-}
+//struct ConsoleEntries_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EmptyView()
+//    }
+//}
 
 fileprivate extension ConsoleEntry {
     var systemName: String {

@@ -9,11 +9,11 @@
 import SwiftUI
 
 class KeyboardAvoidingTextView: UITextView {
-    var bottomInset: CGFloat = 0 { didSet { setNeedsLayout() } }
-    override var bounds: CGRect { didSet { setNeedsLayout() } }
+    var errorLocation: (Int, Int)?
     
     override func didMoveToWindow() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidResize), name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
@@ -21,33 +21,48 @@ class KeyboardAvoidingTextView: UITextView {
         NotificationCenter.default.removeObserver(self)
     }
     
+    @objc func keyboardDidResize(aNotification: NSNotification) {
+//        if !isFirstResponder {
+//            return
+//        }
+//        
+//        let info = aNotification.userInfo
+//        let infoNSValue = info![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+//        let keyboardFrame = infoNSValue.cgRectValue.size
+//        contentInset = .init(
+//            top: 0,
+//            left: 0,
+//            bottom: keyboardFrame.height,
+//            right: 0
+//        )
+//        scrollIndicatorInsets = contentInset
+    }
+    
     @objc func keyboardDidShow(aNotification: NSNotification) {
         let info = aNotification.userInfo
         let infoNSValue = info![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
         let keyboardFrame = infoNSValue.cgRectValue.size
-        bottomInset = keyboardFrame.height
+        let bottom = max(keyboardFrame.height - safeAreaInsets.bottom, 0)
+        contentInset = .init(top: 0, left: 0, bottom: bottom, right: 0)
+        scrollIndicatorInsets = contentInset
     }
 
     @objc func keyboardWillHide(aNotification:NSNotification) {
-        bottomInset = 0
+        contentInset = .zero
+        scrollIndicatorInsets = .zero
     }
-    
-    override func layoutSubviews() {
-        let screenHeight = UIScreen.main.bounds.height
-        let frameInWindow = convert(bounds, to: nil)
-        let bottomDistance = max(screenHeight - frameInWindow.maxY, 0)
-        contentInset = .init(
-            top: 0,
-            left: 0,
-            bottom: max(0, bottomInset - bottomDistance),
-            right: 0
-        )
-        scrollIndicatorInsets = contentInset
+
+    @objc func selectError() {
+        if let (lineNumber, columnNumber) = errorLocation {
+            let location = text.location(forLine: lineNumber, column: columnNumber)
+            selectedRange = NSRange(location: location, length: 0)
+        }
     }
 }
 
 struct TextEditor: UIViewRepresentable {
     @Binding var source: String
+    var errorLocation: (Int, Int)? = nil
     var isEditable = true
     var onFormat: (() -> Void)? = nil
     @State var selection: NSRange? = nil
@@ -62,15 +77,22 @@ struct TextEditor: UIViewRepresentable {
         uiView.autocorrectionType = .no
         uiView.autocapitalizationType = .none
         uiView.alwaysBounceVertical = true
+        uiView.textContainerInset = .init(top: 10, left: 10, bottom: 10, right: 10)
         
-        let label = UILabel()
-        label.font = .monospacedDigitSystemFont(ofSize: 14, weight: .regular)
+        let cursorPositionItem = UIBarButtonItem(
+            title: "",
+            style: .plain,
+            target: uiView,
+            action: #selector(KeyboardAvoidingTextView.selectError)
+        )
+        let font = UIFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
+        cursorPositionItem.setTitleTextAttributes([.font: font], for: [.normal])
+        cursorPositionItem.setTitleTextAttributes([.font: font], for: [.disabled])
         
         let toolbar = UIToolbar()
         toolbar.items = [
-            UIBarButtonItem(customView: label),
             UIBarButtonItem(
-                title: "Format",
+                image: UIImage(systemName: "wand.and.stars"),
                 style: .plain,
                 target: context.coordinator,
                 action: #selector(Coordinator.format)
@@ -80,9 +102,9 @@ struct TextEditor: UIViewRepresentable {
                 target: nil,
                 action: nil
             ),
+            cursorPositionItem,
             UIBarButtonItem(
-                title: "Done",
-                style: .done,
+                barButtonSystemItem: .done,
                 target: uiView,
                 action: #selector(UIResponder.resignFirstResponder)
             )
@@ -96,6 +118,8 @@ struct TextEditor: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: KeyboardAvoidingTextView, context: Context) {
+        uiView.errorLocation = errorLocation
+        
         uiView.text = source
         uiView.isEditable = isEditable
         
@@ -104,11 +128,10 @@ struct TextEditor: UIViewRepresentable {
         toolbar?.tintColor = uiView.tintColor
         
         if let selection = selection,
-            let label = toolbar?.items?.first?.customView as? UILabel {
+            let cursorPositionItem = toolbar?.items?[2] {
             let (line, column) = source.lineAndColumn(for: selection)
-            label.text = "\(line):\(column)"
-            label.sizeToFit()
-            toolbar?.setNeedsLayout()
+            cursorPositionItem.title = "\(line):\(column)"
+            cursorPositionItem.isEnabled = errorLocation != nil
         }
     }
     
@@ -124,8 +147,11 @@ struct TextEditor: UIViewRepresentable {
         }
         
         func textViewDidChangeSelection(_ textView: UITextView) {
-            if textView.isFirstResponder {
-                textEditor.selection = textView.selectedRange
+            // Ensure there's no SwiftUI updates when we call this (you can get a warning otherwise)
+            DispatchQueue.main.async {
+                if textView.isFirstResponder {
+                    self.textEditor.selection = textView.selectedRange
+                }
             }
         }
         
@@ -148,19 +174,38 @@ struct TextEditor_Previews: PreviewProvider {
 fileprivate extension String {
     func lineAndColumn(for range: NSRange) -> (Int, Int) {
         var lineNumber = 1
-        var columnNumber = 0
+        var columnNumber = 1
         
         for (i, char) in self.enumerated() {
             if i >= range.lowerBound {
                 break
             } else if char == "\n" {
                 lineNumber += 1
-                columnNumber = 0
+                columnNumber = 1
             } else {
                 columnNumber += 1
             }
         }
         
         return (lineNumber, columnNumber)
+    }
+    
+    func location(forLine line: Int, column: Int) -> Int {
+        var lineNumber = line
+        var columnNumber = column
+        
+        for (i, char) in self.enumerated() {
+            if lineNumber != 1 {
+                if char == "\n" {
+                    lineNumber -= 1
+                }
+            } else if columnNumber != 1 {
+                columnNumber -= 1
+            } else {
+                return i
+            }
+        }
+        
+        return count
     }
 }
