@@ -25,8 +25,8 @@ We can probably assume that any syntax highlighting or nice editor features are 
 
 Currently any js build of BuckleScript will be 4mb+, and that is enough to crash the Metro bundler. Running node with 6gb of old space fixes this - but it'll take 10 minutes.
 
-Doing this, you can generate a static jsbundle file, and then modify react-native-threads to force it to load all bundles from the bundled files (like it does in production). That mostly works.
+Doing this, you can generate a static jsbundle file, and then you can modify the native code for react-native-threads to force it to load all bundles from the bundled files (like it does in production). That mostly works - you'll be able to compile and format code with this mechanism.
 
-If we can figure out how to get a smaller bundle, that would help a lot. Currently we bundle reason (for refmt) and BuckleScript's playground (which I think includes refmt). There's probably a lot of room for improvement here. We can also look into something like Haul (or related packages) to generate the jsbundle - that'll be much faster because we can sidestep babel.
+If we can figure out how to get a smaller bundle, that would help a lot. Currently we bundle reason (for refmt) and BuckleScript's playground (which I think includes refmt again). There's probably a lot of room for improvement here. We can also look into something like Haul (or related packages) to generate the jsbundle - that'll be much faster because we can sidestep babel.
 
-That's all quite a lot of hassle for now, and makes development not fun. So I think for now, it makes sense to continue with SwiftUI development, focusing mostly on the runtime bundle, which can be shared when things improve. The UI will be pretty minimal in this project, so a rewrite where we can reuse the runtime will be quite quick.
+That's all quite a lot of hassle for now, and makes development not fun. So I think for now, it makes sense to continue with SwiftUI development, focusing mostly on the runtime bundle in JS (under `/runtime`), which can be shared when things improve. The UI will be pretty minimal in this project, so a rewrite where we can reuse the runtime will be quite quick.
