@@ -81,6 +81,13 @@ class File: ObservableObject {
         Publishers.CombineLatest($source, $language)
             .debounce(for: 1, scheduler: RunLoop.main)
             .sink { (source, language) in
+                guard !source.contains("//") else {
+                    // Crashes the JS engine
+                    self.javascript = ""
+                    self.compilationError = CompilationError("Line comments are not yet supported.\n\nUse /* block comments */ instead.")
+                    return
+                }
+                
                 guard let jsContext = self.jsContext,
                     let window = jsContext.globalObject,
                     let runtime = window.objectForKeyedSubscript("runtime"),

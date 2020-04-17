@@ -15,15 +15,20 @@ struct MainContent: View {
     var body: some View {
         VStack(spacing: 0) {
             if mode.language == file.language {
-                TextEditor(
+                CodeEditor(
+                    language: .init(language: file.language),
                     source: $file.source,
                     errorLocation: file.compilationError?.location,
-                    isEditable: true,
-                    onFormat: { self.file.format() }
-                )
+                    isEditable: true
+                ) { action in
+                    switch action {
+                    case .format: self.file.format()
+                    }
+                }
                 .edgesIgnoringSafeArea(.bottom)
             } else if mode.language != nil {
-                TextEditor(
+                CodeEditor(
+                    language: .init(language: mode.language!),
                     source: .constant(self.file.source(translatedTo: mode.language!) ?? ""),
                     isEditable: false
                 )
@@ -37,7 +42,11 @@ struct MainContent: View {
                 .padding(.horizontal)
                 .padding(.bottom)
             } else if mode == .javascript {
-                TextEditor(source: $file.javascript, isEditable: false)
+                CodeEditor(
+                    language: .javascript,
+                    source: $file.javascript,
+                    isEditable: false
+                )
                 .edgesIgnoringSafeArea(.bottom)
             } else if mode == .console {
                 ConsoleEntries(file: file)

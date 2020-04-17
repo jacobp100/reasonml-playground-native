@@ -7,5 +7,6 @@ target 'ReasonML' do
 
   # Pods for ReasonML
   pod "Introspect"
+  pod "Sourceful"
 
 end

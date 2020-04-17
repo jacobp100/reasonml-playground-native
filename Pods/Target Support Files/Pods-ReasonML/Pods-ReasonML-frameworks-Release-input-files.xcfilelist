@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-ReasonML/Pods-ReasonML-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Introspect/Introspect.framework
+${BUILT_PRODUCTS_DIR}/Sourceful/Sourceful.framework

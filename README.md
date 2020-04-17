@@ -8,13 +8,10 @@ Uses SwiftUI. We should consider using React Native + ReasonML for Android suppo
 
 Below is a list of stuff I would like to add, but we should properly consider React Native first.
 
-- Syntax highlighting
-- Line numbers
 - React/web output view
-- Customisable layout
-- Copy and paste from console
 - JSON printing in console
-- Better compilation error formatting including jump to selection
+- Identify ReasonML arrays and lists, and provide better formatting
+- Customisable layout
 - Deeplinking for playground URLs, and ability to share projects (needs ReasonML to add manifest to their site)
 - File save/import/export
 - macOS app

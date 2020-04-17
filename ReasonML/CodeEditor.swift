@@ -1,41 +1,25 @@
 //
-//  TextEditor.swift
+//  CodeEditor.swift
 //  ReasonML
 //
-//  Created by Jacob Parker on 12/04/2020.
+//  Created by Jacob Parker on 16/04/2020.
 //  Copyright © 2020 Jacob Parker. All rights reserved.
 //
 
 import SwiftUI
+import Sourceful
 
-class KeyboardAvoidingTextView: UITextView {
+class CustomSyntaxTextView: SyntaxTextView {
     var errorLocation: (Int, Int)?
     
     override func didMoveToWindow() {
+        super.didMoveToWindow()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidResize), name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    @objc func keyboardDidResize(aNotification: NSNotification) {
-//        if !isFirstResponder {
-//            return
-//        }
-//        
-//        let info = aNotification.userInfo
-//        let infoNSValue = info![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
-//        let keyboardFrame = infoNSValue.cgRectValue.size
-//        contentInset = .init(
-//            top: 0,
-//            left: 0,
-//            bottom: keyboardFrame.height,
-//            right: 0
-//        )
-//        scrollIndicatorInsets = contentInset
     }
     
     @objc func keyboardDidShow(aNotification: NSNotification) {
@@ -44,46 +28,57 @@ class KeyboardAvoidingTextView: UITextView {
         let keyboardFrame = infoNSValue.cgRectValue.size
         let bottom = max(keyboardFrame.height - safeAreaInsets.bottom, 0)
         contentInset = .init(top: 0, left: 0, bottom: bottom, right: 0)
-        scrollIndicatorInsets = contentInset
     }
 
     @objc func keyboardWillHide(aNotification:NSNotification) {
         contentInset = .zero
-        scrollIndicatorInsets = .zero
     }
 
     @objc func selectError() {
         if let (lineNumber, columnNumber) = errorLocation {
             let location = text.location(forLine: lineNumber, column: columnNumber)
-            selectedRange = NSRange(location: location, length: 0)
+            contentTextView.selectedRange = NSRange(location: location, length: 0)
         }
     }
 }
 
-struct TextEditor: UIViewRepresentable {
+struct CodeEditor: UIViewRepresentable {
+    enum Language {
+        case reason, ocaml, javascript
+        
+        init(language: File.Language) {
+            switch language {
+            case .reason: self = .reason
+            case .ocaml: self = .ocaml
+            }
+        }
+    }
+    
+    enum Action { case format }
+    
+    var language: Language
     @Binding var source: String
+    @State var selection: NSRange? = nil
     var errorLocation: (Int, Int)? = nil
     var isEditable = true
-    var onFormat: (() -> Void)? = nil
-    @State var selection: NSRange? = nil
+    var onAction: ((Action) -> Void)? = nil
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
     
-    func makeUIView(context: Context) -> KeyboardAvoidingTextView {
-        let uiView = KeyboardAvoidingTextView()
-        uiView.font = .monospacedSystemFont(ofSize: 14, weight: .regular)
-        uiView.autocorrectionType = .no
-        uiView.autocapitalizationType = .none
-        uiView.alwaysBounceVertical = true
-        uiView.textContainerInset = .init(top: 10, left: 10, bottom: 10, right: 10)
+    func makeUIView(context: Context) -> CustomSyntaxTextView {
+        let uiView = CustomSyntaxTextView()
+        uiView.theme = CustomTheme()
+        uiView.delegate = context.coordinator
+        uiView.contentTextView.keyboardAppearance = .default
+        uiView.contentTextView.alwaysBounceVertical = true
         
         let cursorPositionItem = UIBarButtonItem(
             title: "",
             style: .plain,
             target: uiView,
-            action: #selector(KeyboardAvoidingTextView.selectError)
+            action: #selector(CustomSyntaxTextView.selectError)
         )
         let font = UIFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
         cursorPositionItem.setTitleTextAttributes([.font: font], for: [.normal])
@@ -105,25 +100,25 @@ struct TextEditor: UIViewRepresentable {
             cursorPositionItem,
             UIBarButtonItem(
                 barButtonSystemItem: .done,
-                target: uiView,
+                target: uiView.contentTextView,
                 action: #selector(UIResponder.resignFirstResponder)
             )
         ]
         toolbar.sizeToFit()
-        uiView.inputAccessoryView = toolbar
-        
-        uiView.delegate = context.coordinator
+        uiView.contentTextView.inputAccessoryView = toolbar
         
         return uiView
     }
     
-    func updateUIView(_ uiView: KeyboardAvoidingTextView, context: Context) {
+    func updateUIView(_ uiView: CustomSyntaxTextView, context: Context) {
+        if uiView.text != source {
+            uiView.text = source
+        }
+        
         uiView.errorLocation = errorLocation
+        uiView.contentTextView.isEditable = isEditable
         
-        uiView.text = source
-        uiView.isEditable = isEditable
-        
-        let toolbar = uiView.inputAccessoryView as? UIToolbar
+        let toolbar = uiView.contentTextView.inputAccessoryView as? UIToolbar
         toolbar?.isHidden = !isEditable
         toolbar?.tintColor = uiView.tintColor
         
@@ -135,39 +130,40 @@ struct TextEditor: UIViewRepresentable {
         }
     }
     
-    class Coordinator: NSObject, UITextViewDelegate {
-        var textEditor: TextEditor
+    class Coordinator: NSObject, SyntaxTextViewDelegate {
+        fileprivate lazy var reasonLexer = ReasonLexer()
+        fileprivate lazy var ocamlLexer = OCamlLexer()
+        fileprivate lazy var javascriptLexer = JavaScriptLexer()
+        
+        var codeEditor: CodeEditor
 
-        init(_ textEditor: TextEditor) {
-            self.textEditor = textEditor
+        init(_ codeEditor: CodeEditor) {
+            self.codeEditor = codeEditor
         }
         
-        func textViewDidBeginEditing(_ textView: UITextView) {
-            textEditor.selection = textView.selectedRange
-        }
-        
-        func textViewDidChangeSelection(_ textView: UITextView) {
-            // Ensure there's no SwiftUI updates when we call this (you can get a warning otherwise)
-            DispatchQueue.main.async {
-                if textView.isFirstResponder {
-                    self.textEditor.selection = textView.selectedRange
-                }
+        func lexerForSource(_ source: String) -> Lexer {
+            switch codeEditor.language {
+            case .reason: return reasonLexer
+            case .ocaml: return ocamlLexer
+            case .javascript: return javascriptLexer
             }
         }
         
-        func textViewDidChange(_ textView: UITextView) {
-            textEditor.source = textView.text
+        func textViewDidBeginEditing(_ syntaxTextView: SyntaxTextView) {
+            self.codeEditor.selection = syntaxTextView.contentTextView.selectedRange
+        }
+        
+        func didChangeSelectedRange(_ syntaxTextView: SyntaxTextView, selectedRange: NSRange) {
+            self.codeEditor.selection = selectedRange
+        }
+        
+        func didChangeText(_ syntaxTextView: SyntaxTextView) {
+            codeEditor.source = syntaxTextView.text
         }
         
         @objc func format() {
-            textEditor.onFormat?()
+            codeEditor.onAction?(.format)
         }
-    }
-}
-
-struct TextEditor_Previews: PreviewProvider {
-    static var previews: some View {
-        TextEditor(source: .constant("Hello world!"))
     }
 }
 

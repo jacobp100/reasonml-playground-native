@@ -16,11 +16,15 @@
 		16B37A0224437B0300F99D69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B37A0124437B0300F99D69 /* Assets.xcassets */; };
 		16B37A0524437B0300F99D69 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B37A0424437B0300F99D69 /* Preview Assets.xcassets */; };
 		16B37A0824437B0300F99D69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16B37A0624437B0300F99D69 /* LaunchScreen.storyboard */; };
-		16B37A1024437F1300F99D69 /* TextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B37A0F24437F1300F99D69 /* TextEditor.swift */; };
 		16C99F9124478A1500C8B130 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99F9024478A1500C8B130 /* Types.swift */; };
 		16C99F9324478A4000C8B130 /* ModePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99F9224478A4000C8B130 /* ModePicker.swift */; };
 		16C99F952447A16C00C8B130 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99F942447A16C00C8B130 /* Header.swift */; };
 		16C99F972447A2B200C8B130 /* MainContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99F962447A2B200C8B130 /* MainContent.swift */; };
+		16C99F99244898D500C8B130 /* CodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99F98244898D500C8B130 /* CodeEditor.swift */; };
+		16C99F9B24489EDA00C8B130 /* Sourceful+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99F9A24489EDA00C8B130 /* Sourceful+Theme.swift */; };
+		16C99F9D24489F4B00C8B130 /* Sourceful+Reason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99F9C24489F4B00C8B130 /* Sourceful+Reason.swift */; };
+		16C99F9F2448AD1D00C8B130 /* Sourceful+OCaml.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99F9E2448AD1D00C8B130 /* Sourceful+OCaml.swift */; };
+		16C99FA12448B29F00C8B130 /* Sourceful+JavaScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C99FA02448B29F00C8B130 /* Sourceful+JavaScript.swift */; };
 		16F63C2C24477384002B62C2 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 16F63C2B24477384002B62C2 /* main.js */; };
 		B8FA0CBA9B5AC23CE3192E8C /* Pods_ReasonML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062BE5523D1D8A1299C2AB2 /* Pods_ReasonML.framework */; };
 /* End PBXBuildFile section */
@@ -37,11 +41,15 @@
 		16B37A0424437B0300F99D69 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		16B37A0724437B0300F99D69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		16B37A0924437B0300F99D69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		16B37A0F24437F1300F99D69 /* TextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditor.swift; sourceTree = "<group>"; };
 		16C99F9024478A1500C8B130 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		16C99F9224478A4000C8B130 /* ModePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModePicker.swift; sourceTree = "<group>"; };
 		16C99F942447A16C00C8B130 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		16C99F962447A2B200C8B130 /* MainContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContent.swift; sourceTree = "<group>"; };
+		16C99F98244898D500C8B130 /* CodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditor.swift; sourceTree = "<group>"; };
+		16C99F9A24489EDA00C8B130 /* Sourceful+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sourceful+Theme.swift"; sourceTree = "<group>"; };
+		16C99F9C24489F4B00C8B130 /* Sourceful+Reason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sourceful+Reason.swift"; sourceTree = "<group>"; };
+		16C99F9E2448AD1D00C8B130 /* Sourceful+OCaml.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sourceful+OCaml.swift"; sourceTree = "<group>"; };
+		16C99FA02448B29F00C8B130 /* Sourceful+JavaScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sourceful+JavaScript.swift"; sourceTree = "<group>"; };
 		16F63C2B24477384002B62C2 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = main.js; path = runtime/dist/main.js; sourceTree = SOURCE_ROOT; };
 		19FBF3652E1283FD88413046 /* Pods-ReasonML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReasonML.debug.xcconfig"; path = "Target Support Files/Pods-ReasonML/Pods-ReasonML.debug.xcconfig"; sourceTree = "<group>"; };
 		7062BE5523D1D8A1299C2AB2 /* Pods_ReasonML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReasonML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,7 +107,11 @@
 				160F828B2444999C003CD7D4 /* ConsoleEntries.swift */,
 				160F828F24449CE4003CD7D4 /* Toast.swift */,
 				16C99F9024478A1500C8B130 /* Types.swift */,
-				16B37A0F24437F1300F99D69 /* TextEditor.swift */,
+				16C99F98244898D500C8B130 /* CodeEditor.swift */,
+				16C99F9A24489EDA00C8B130 /* Sourceful+Theme.swift */,
+				16C99F9C24489F4B00C8B130 /* Sourceful+Reason.swift */,
+				16C99F9E2448AD1D00C8B130 /* Sourceful+OCaml.swift */,
+				16C99FA02448B29F00C8B130 /* Sourceful+JavaScript.swift */,
 				160F8281244392E9003CD7D4 /* File.swift */,
 				16B37A0124437B0300F99D69 /* Assets.xcassets */,
 				16B37A0624437B0300F99D69 /* LaunchScreen.storyboard */,
@@ -242,17 +254,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16C99F9B24489EDA00C8B130 /* Sourceful+Theme.swift in Sources */,
 				16C99F952447A16C00C8B130 /* Header.swift in Sources */,
 				160F828C2444999C003CD7D4 /* ConsoleEntries.swift in Sources */,
 				160F8282244392E9003CD7D4 /* File.swift in Sources */,
 				16B379FC24437B0100F99D69 /* AppDelegate.swift in Sources */,
 				16C99F9124478A1500C8B130 /* Types.swift in Sources */,
 				16B379FE24437B0100F99D69 /* SceneDelegate.swift in Sources */,
+				16C99F9F2448AD1D00C8B130 /* Sourceful+OCaml.swift in Sources */,
 				16B37A0024437B0100F99D69 /* ContentView.swift in Sources */,
-				16B37A1024437F1300F99D69 /* TextEditor.swift in Sources */,
 				160F829024449CE4003CD7D4 /* Toast.swift in Sources */,
+				16C99F99244898D500C8B130 /* CodeEditor.swift in Sources */,
 				16C99F972447A2B200C8B130 /* MainContent.swift in Sources */,
+				16C99FA12448B29F00C8B130 /* Sourceful+JavaScript.swift in Sources */,
 				16C99F9324478A4000C8B130 /* ModePicker.swift in Sources */,
+				16C99F9D24489F4B00C8B130 /* Sourceful+Reason.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
