@@ -26,7 +26,7 @@ class File: ObservableObject {
     fileprivate var jsContext = JSContext()
     
     @Published var language = Language.reason
-    @Published var source = "let x = 5;\nJs.log([x,x,x,x,x,x,x,x,x]);\n"
+    @Published var source = "let x = 5;\nJs.log(x);\n"
     @Published var javascript = ""
     @Published var console = Array<ConsoleEntry>()
     @Published var compilationError: CompilationError? = nil

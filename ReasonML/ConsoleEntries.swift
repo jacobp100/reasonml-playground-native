@@ -9,49 +9,23 @@
 import Foundation
 import SwiftUI
 
-fileprivate func fragment(
-    for value: ConsoleEntry.Value,
-    collapse: Bool
-) -> Text {
-    let canCollapse = collapse && (value.format == .array || value.format == .object)
-    let shouldCollaspe = canCollapse && value.description.count > 30
-    let description = shouldCollaspe
-        ? "\(value.description.prefix(20))..."
-        : value.description
-    
-    return Text(description)
-        .foregroundColor(Color(value.format.foreground))
-}
-
-struct ConsoleEntryOverview: View {
-    var part: ConsoleEntry.Part
-    
-    func section(for value: ConsoleEntry.Value) -> some View {
-        Section(header: Text(String("\(value.format)"))) {
-            fragment(for: value, collapse: false)
-            .contextMenu {
-                Button("Copy") {
-                    UIPasteboard.general.string = "\(value)"
-                }
-            }
-        }
-    }
-    
-    var body: some View {
-        List {
-            section(for: part.label)
-            
-            ForEach(part.alternate ?? []) {
-                self.section(for: $0)
-            }
-        }
-        .listStyle(GroupedListStyle())
-    }
-}
-
 struct ConsoleEntries: View {
     @ObservedObject var file: File
     @State var entry: ConsoleEntry? = nil
+    
+    func fragment(
+        for value: ConsoleEntry.Value,
+        collapse: Bool
+    ) -> Text {
+        let canCollapse = collapse && (value.format == .array || value.format == .object)
+        let shouldCollaspe = canCollapse && value.description.count > 30
+        let description = shouldCollaspe
+            ? "\(value.description.prefix(20))..."
+            : value.description
+        
+        return Text(description)
+            .foregroundColor(Color(value.format.foreground))
+    }
     
     func message(for entry: ConsoleEntry) -> Text {
         let parts = entry.parts.reduce(nil) { (accum: Text?, part) in
@@ -65,6 +39,33 @@ struct ConsoleEntries: View {
         }
         
         return parts ?? Text("")
+    }
+    
+    func sheet(_ entry: ConsoleEntry) -> some View {
+        NavigationView {
+            List {
+                ForEach(entry.parts) { part in
+                    Section {
+                        ForEach([part.label] + (part.alternate ?? [])) { value in
+                            VStack(alignment: .leading) {
+                                Text(value.format.description)
+                                .font(.footnote)
+                                .foregroundColor(Color(.secondaryLabel))
+                                
+                                self.fragment(for: value, collapse: false)
+                            }
+                            .copy(value.description)
+                        }
+                    }
+                }
+            }
+            .listStyle(GroupedListStyle())
+            .navigationBarTitle(Text(String("Console \(entry.level)")))
+            .navigationBarItems(trailing: Button("Close") {
+                self.entry = nil
+            })
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     var body: some View {
@@ -81,33 +82,22 @@ struct ConsoleEntries: View {
             .onTapGesture {
                 self.entry = entry
             }
-            .contextMenu {
-                Button("Copy") {
-                    UIPasteboard.general.string = "\(entry)"
-                }
-            }
+            .copy("\(entry)")
         }
         .introspectTableView { tableView in
             tableView.separatorColor = .clear
         }
-        .sheet(item: $entry) { entry in
-            NavigationView {
-                List(entry.parts) { part in
-                    NavigationLink(
-                        destination: ConsoleEntryOverview(part: part)
-                            .navigationBarItems(trailing: Button("Close") {
-                                self.entry = nil
-                            })
-                    ) {
-                        fragment(for: part.label, collapse: true)
-                    }
-                }
-                .navigationBarTitle(Text(String("Console \(entry.level)")))
-                .navigationBarItems(trailing: Button("Close") {
-                    self.entry = nil
-                })
+        .sheet(item: $entry, content: self.sheet)
+    }
+}
+
+fileprivate extension View {
+    func copy(_ string: String) -> some View {
+        self
+        .contextMenu {
+            Button("Copy") {
+                UIPasteboard.general.string = string
             }
-            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }

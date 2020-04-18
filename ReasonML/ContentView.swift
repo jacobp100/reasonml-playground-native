@@ -28,7 +28,7 @@ struct ContentView: View {
                 
                 CompilationIndicator(file: file)
             }
-            .padding()
+            .padding([.horizontal, .top])
             
             HStack(spacing: 0) {
                 MainContent(file: file, mode: mode)
