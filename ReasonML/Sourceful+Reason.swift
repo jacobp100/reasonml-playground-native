@@ -7,7 +7,7 @@ class ReasonLexer: SourceCodeRegexLexer {
     lazy var generators: [TokenGenerator] = {
         var generators = [TokenGenerator?]()
         
-        let keywords = "and as asr assert begin class constraint do done downto else end exception external for fun function functor if in include inherit initializer land lazy let lor lsl lsr lxor match method mod module mutable new nonrec object of open or private rec sig struct then to try type val virtual when while with".components(separatedBy: " ")
+        let keywords = "and as asr assert begin class constraint do done downto else end exception external for fun function functor if in include inherit initializer land lazy let lor lsl lsr lxor switch method mod module mutable new nonrec object of open or private rec sig struct then to try type val virtual when while with".components(separatedBy: " ")
         generators.append(keywordGenerator(keywords, tokenType: .keyword))
         
         // Modules and variants
@@ -25,7 +25,7 @@ class ReasonLexer: SourceCodeRegexLexer {
         generators.append(regexGenerator("//(.*)", tokenType: .comment))
         
         // Block comment
-        generators.append(regexGenerator("(/\\*)(.*)(\\*/)", options: [.dotMatchesLineSeparators], tokenType: .comment))
+        generators.append(regexGenerator("(/\\*)(.*?)(\\*/)", options: [.dotMatchesLineSeparators], tokenType: .comment))
         
         // Single-line string literal
         generators.append(regexGenerator("\"(\\\\\"|[^\"\\n])*\"", tokenType: .string))

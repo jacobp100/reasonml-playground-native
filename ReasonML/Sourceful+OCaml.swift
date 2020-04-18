@@ -22,7 +22,7 @@ class OCamlLexer: SourceCodeRegexLexer {
         generators.append(keywordGenerator(booleans, tokenType: .keyword))
         
         // Block comment
-        generators.append(regexGenerator("(\\(\\*)(.*)(\\*\\))", options: [.dotMatchesLineSeparators], tokenType: .comment))
+        generators.append(regexGenerator("(\\(\\*)(.*?)(\\*\\))", options: [.dotMatchesLineSeparators], tokenType: .comment))
         
         // Single-line string literal
         generators.append(regexGenerator("\"(\\\\\"|[^\"\\n])*\"", tokenType: .string))

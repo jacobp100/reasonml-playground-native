@@ -9,8 +9,8 @@ Uses SwiftUI. We should consider using React Native + ReasonML for Android suppo
 Below is a list of stuff I would like to add, but we should properly consider React Native first.
 
 - React/web output view
-- JSON printing in console
-- Identify ReasonML arrays and lists, and provide better formatting
+- Explore JSON output in console
+- Improve formatting for identified BuckleScript objects (we do this for lists)
 - Customisable layout
 - Deeplinking for playground URLs, and ability to share projects (needs ReasonML to add manifest to their site)
 - File save/import/export
@@ -18,7 +18,7 @@ Below is a list of stuff I would like to add, but we should properly consider Re
 
 ## Notes for React Native
 
-We can probably assume that any syntax highlighting or nice editor features are going to be native components. Even though this can technically be done from RN (you can put `<Text>` components inside a `<TextInput>`), it's likely to not be performant enough.
+The current syntax highlighter is mostly okay. It requires some xcode setup, and misses some token types. But we should be able to get in running in React Native. We can probably assume that any syntax highlighting or nice editor features are going to be native components. Even though this can technically be done from RN (you can put `<Text>` components inside a `<TextInput>`), it's likely to not be performant enough. We'll need to find another syntax highlighing editor for Android.
 
 Currently any js build of BuckleScript will be 4mb+, and that is enough to crash the Metro bundler. Running node with 6gb of old space fixes this - but it'll take 10 minutes.
 
