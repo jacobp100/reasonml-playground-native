@@ -47,7 +47,7 @@ struct ModePicker: View {
             )
         }
         .pickerStyle(SegmentedPickerStyle())
-        .frame(width: 48 * (hideConsole ? 3 : 4))
+        .frame(width: 42 * (hideConsole ? 3 : 4))
     }
 }
 

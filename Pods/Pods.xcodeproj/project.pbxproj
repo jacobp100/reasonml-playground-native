@@ -66,7 +66,7 @@
 /* Begin PBXFileReference section */
 		03448828B52C635CC04FF32A5B28A7CF /* SwiftLexer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftLexer.swift; path = Sources/Languages/SwiftLexer.swift; sourceTree = "<group>"; };
 		044B9263063167F0D9EF43E6FF68900A /* Pods-ReasonML-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ReasonML-frameworks.sh"; sourceTree = "<group>"; };
-		0815C3EBE83FC43D1EE0633E115623C8 /* Sourceful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Sourceful.framework; path = Sourceful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0815C3EBE83FC43D1EE0633E115623C8 /* Sourceful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sourceful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09EFB6FA42DBE06F112D8A6A5FB68373 /* InnerTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InnerTextView.swift; path = Sources/View/InnerTextView.swift; sourceTree = "<group>"; };
 		117BDA706859215C232B8AB66F4B1134 /* Token.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Token.swift; path = Sources/Model/Token.swift; sourceTree = "<group>"; };
 		1566A66132ABBED16B9B92DFBBE3372B /* SourceCodeToken.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SourceCodeToken.swift; path = Sources/SourceCodeToken.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		9426B6FAE57928EA072BAC851709058E /* Types.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Types.swift; path = Sources/Util/Types.swift; sourceTree = "<group>"; };
 		96B54EB7A8F729FABDA11B3456A287D2 /* Pods-ReasonML-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ReasonML-acknowledgements.markdown"; sourceTree = "<group>"; };
 		97541E1ECAE30AFFBDE73A655CCF5E78 /* Pods-ReasonML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ReasonML.debug.xcconfig"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E65153D3153A09F9B95AF8B1218D587 /* UIKitIntrospectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIKitIntrospectionView.swift; path = Introspect/UIKitIntrospectionView.swift; sourceTree = "<group>"; };
 		9ED5009048734A09FBFCE341450EBBEE /* NSMutableAttributedString+Tokens.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSMutableAttributedString+Tokens.swift"; path = "Sources/Util/NSMutableAttributedString+Tokens.swift"; sourceTree = "<group>"; };
 		A10C4F8D391EEB80BCC20137BC481FB1 /* SourceCodeTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SourceCodeTheme.swift; path = Sources/SourceCodeTheme.swift; sourceTree = "<group>"; };
@@ -111,9 +111,9 @@
 		CCF03D1AE5A2FB2777F1A835FF4CBCA0 /* Python3Lexer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Python3Lexer.swift; path = Sources/Languages/Python3Lexer.swift; sourceTree = "<group>"; };
 		CE0E50179F42A88C4663D0366F6ABEAA /* Introspect-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Introspect-prefix.pch"; sourceTree = "<group>"; };
 		CFF0146D7809625F717DC628C59832F4 /* Introspect-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Introspect-Info.plist"; sourceTree = "<group>"; };
-		D0A70003FD5E49B30CA83DAAFE03116B /* Introspect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Introspect.framework; path = Introspect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0A70003FD5E49B30CA83DAAFE03116B /* Introspect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Introspect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DA37D79FB9C43CEB6D475BFBF5C34A /* String+Range.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Range.swift"; path = "Sources/Util/String+Range.swift"; sourceTree = "<group>"; };
-		E41D4F6BBF41C6C18F46EB3A0B96086E /* Pods_ReasonML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ReasonML.framework; path = "Pods-ReasonML.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E41D4F6BBF41C6C18F46EB3A0B96086E /* Pods_ReasonML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReasonML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC084AA672FE0177F1AC52581D388B70 /* NSTextView+UIKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSTextView+UIKit.swift"; path = "Sources/Util/NSTextView+UIKit.swift"; sourceTree = "<group>"; };
 		F22901A9B10E2BA2EB4905FD03A15321 /* DefaultSourceCodeTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DefaultSourceCodeTheme.swift; path = Sources/Themes/DefaultSourceCodeTheme.swift; sourceTree = "<group>"; };
 		F3D5BB3A0D7811514CF0EE6DBED079CF /* Introspect.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Introspect.modulemap; sourceTree = "<group>"; };
@@ -176,7 +176,6 @@
 				9426B6FAE57928EA072BAC851709058E /* Types.swift */,
 				DCDB425585DF3F018D762B5E7553CE3A /* Support Files */,
 			);
-			name = Sourceful;
 			path = Sourceful;
 			sourceTree = "<group>";
 		};
@@ -190,7 +189,6 @@
 				1E2530D2434A65B7E1F83B1A063A9E9A /* ViewExtensions.swift */,
 				6535657D91032A20E1961F18CFB33153 /* Support Files */,
 			);
-			name = Introspect;
 			path = Introspect;
 			sourceTree = "<group>";
 		};
@@ -788,6 +786,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (

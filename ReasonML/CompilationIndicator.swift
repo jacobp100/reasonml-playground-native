@@ -9,27 +9,21 @@
 import Foundation
 import SwiftUI
 
-struct Header: View {
+struct CompilationIndicator: View {
     @ObservedObject var file: File
-    @Binding var mode: Mode
-    var hideConsole: Bool
     @State var errorVisible = false
     
     var body: some View {
-        HStack {
-            ModePicker(mode: $mode, hideConsole: hideConsole)
-            
-            Spacer()
-            
-            if file.compilationError != nil {
-                Button(action: {
-                    self.errorVisible = true
-                }) {
-                    Text("Error")
-                    Image(systemName: "exclamationmark.circle.fill")
-                }
-            }
+        let disabled = file.compilationError == nil
+        
+        return Button(action: {
+            self.errorVisible = true
+        }) {
+            Text("Error")
+            Image(systemName: "exclamationmark.circle.fill")
         }
+        .opacity(disabled ? 0 : 1)
+        .disabled(disabled)
         .sheet(isPresented: $errorVisible) {
             NavigationView {
                 ScrollView {

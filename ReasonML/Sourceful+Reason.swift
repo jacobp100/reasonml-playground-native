@@ -17,6 +17,10 @@ class ReasonLexer: SourceCodeRegexLexer {
         // https://github.com/highlightjs/highlight.js/blob/master/src/languages/reasonml.js#L43
         generators.append(regexGenerator("\\b(0[xX][a-fA-F0-9_]+[Lln]?|0[oO][0-7_]+[Lln]?|0[bB][01_]+[Lln]?|[0-9][0-9_]*([Lln]|(\\.[0-9_]*)?([eE][-+]?[0-9_]+)?)?)", tokenType: .number))
         
+        // Booleans
+        let booleans = "true false".components(separatedBy: " ")
+        generators.append(keywordGenerator(booleans, tokenType: .keyword))
+        
         // Line comment
         generators.append(regexGenerator("//(.*)", tokenType: .comment))
         

@@ -10,47 +10,6 @@ import Foundation
 import JavaScriptCore
 import Combine
 
-struct ConsoleEntry: Equatable, Hashable, Identifiable {
-    enum Level: Int { case log = 0, warn = 1, error = 2 }
-    
-    let id = UUID()
-    let level: Level
-    let message: String
-}
-
-struct CompilationError: Equatable {
-    static func == (lhs: CompilationError, rhs: CompilationError) -> Bool {
-        lhs.message == rhs.message
-    }
-    
-    fileprivate static let compilationErrorLocationRegex = try? NSRegularExpression(
-        pattern: "Preview (\\d+):(\\d+)",
-        options: []
-    )
-    
-    let message: String
-    let location: (Int, Int)?
-    
-    init(_ message: String) {
-        self.message = message
-        
-        if let matches = CompilationError.compilationErrorLocationRegex?.matches(
-                in: message,
-                options: [],
-                range: NSRange(location: 0, length: message.utf16.count)
-            ),
-            let match = matches.first,
-            let lineRange = Range(match.range(at: 1), in: message),
-            let columnRange = Range(match.range(at: 2), in: message),
-            let lineNumber = Int(message[lineRange]),
-            let columnNumber = Int(message[columnRange]) {
-            self.location = (lineNumber, columnNumber)
-        } else {
-            self.location = nil
-        }
-    }
-}
-
 class File: ObservableObject {
     enum Language: Equatable, Hashable {
         case reason, ocaml
@@ -67,7 +26,7 @@ class File: ObservableObject {
     fileprivate var jsContext = JSContext()
     
     @Published var language = Language.reason
-    @Published var source = "let x = 5;\nJs.log(x);\n"
+    @Published var source = "let x = 5;\nJs.log([x,x,x,x,x,x,x,x,x]);\n"
     @Published var javascript = ""
     @Published var console = Array<ConsoleEntry>()
     @Published var compilationError: CompilationError? = nil
@@ -128,17 +87,41 @@ class File: ObservableObject {
                 }
                 
                 self.console = console.compactMap { entry -> ConsoleEntry? in
-                    if let entry = entry as? NSDictionary,
+                    guard let entry = entry as? NSDictionary,
                         let levelInt = entry["level"] as? Int,
                         let level = ConsoleEntry.Level(rawValue: levelInt),
-                        let message = entry["message"] as? String {
-                        return ConsoleEntry(level: level, message: message)
-                    } else {
+                        let partsArray = entry["parts"] as? [Any] else {
                         return nil
                     }
+                    
+                    let parts = partsArray.compactMap { part -> ConsoleEntry.Part? in
+                        guard let part = part as? NSDictionary,
+                            let labelDict = part["label"] as? NSDictionary,
+                            let label = self.consoleValue(from: labelDict) else {
+                            return nil
+                        }
+                        
+                        let alternate = (part["alternate"] as? NSArray)?
+                            .compactMap { self.consoleValue(from: $0) }
+                        
+                        return ConsoleEntry.Part(label: label, alternate: alternate)
+                    }
+                    
+                    return ConsoleEntry(level: level, parts: parts)
                 }
             }
             .store(in: &subscriptions)
+    }
+    
+    fileprivate func consoleValue(from arg: Any) -> ConsoleEntry.Value? {
+        guard let argDict = arg as? NSDictionary,
+            let formatInt = argDict["format"] as? Int,
+            let format = ConsoleEntry.Format(rawValue: formatInt),
+            let description = argDict["description"] as? String else {
+            return nil
+        }
+        
+        return ConsoleEntry.Value(description: description, format: format)
     }
     
     func format() {

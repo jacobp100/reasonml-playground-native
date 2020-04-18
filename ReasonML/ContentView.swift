@@ -17,8 +17,17 @@ struct ContentView: View {
     @State var mode = Mode.language(.reason)
     
     var body: some View {
-        VStack(spacing: 0) {
-            Header(file: file, mode: $mode, hideConsole: horizontalSizeClass == .regular)
+        VStack {
+            HStack {
+                ModePicker(
+                    mode: $mode,
+                    hideConsole: horizontalSizeClass == .regular
+                )
+                
+                Spacer()
+                
+                CompilationIndicator(file: file)
+            }
             .padding()
             
             HStack(spacing: 0) {
