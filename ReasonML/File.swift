@@ -26,7 +26,35 @@ class File: ObservableObject {
     fileprivate var jsContext = JSContext()
     
     @Published var language = Language.reason
-    @Published var source = "let x = 5;\nJs.log(x);\n"
+    #if targetEnvironment(simulator)
+    @Published var source = """
+    let rec sums = (~current=[], numbers, sum) =>
+      switch (numbers) {
+      | [value, ...rest] =>
+        let answerIncludingValue =
+          if (sum == value) {
+            Some([value, ...current]);
+          } else if (value < sum) {
+            sums(~current=[value, ...current], rest, sum - value);
+          } else {
+            None;
+          };
+        switch (answerIncludingValue) {
+        | Some(_) as answer => answer
+        | None =>
+          let answerExcludingValue = sums(~current, rest, sum);
+          answerExcludingValue;
+        };
+      | [] => None
+      };
+
+    let numbers = [1, 2, 3, 5, 7, 9, 11, 13];
+    sums(numbers, 9)->Js.log;
+    
+    """
+    #else
+    @Published var source = ""
+    #endif
     @Published var javascript = ""
     @Published var console = Array<ConsoleEntry>()
     @Published var compilationError: CompilationError? = nil
